@@ -1,6 +1,20 @@
 buildscript {
 	repositories {
-		maven { url "https://repo.spring.io/plugins-release" }
+		maven { url 'https://maven.aliyun.com/repository/public/' }
+		maven {
+			url 'https://maven.aliyun.com/repository/spring-plugin'
+		}
+		maven {
+			url 'https://maven.aliyun.com/repository/gradle-plugin'
+		}
+
+		mavenLocal()
+		mavenCentral()
+//		jcenter()
+//		maven {
+//			url "https://maven.springframework.org/release"
+//		}
+//		// maven { url "https://repo.spring.io/plugins-release" }
 	}
 	dependencies {
 		classpath("io.spring.gradle:propdeps-plugin:0.0.9.RELEASE")
@@ -147,8 +161,16 @@ configure(allprojects) { project ->
 	}
 
 	repositories {
+		maven { url 'https://maven.aliyun.com/repository/public/' }
+		maven {
+			url 'https://maven.aliyun.com/repository/spring-plugin'
+		}
+		maven {
+			url 'https://maven.aliyun.com/repository/gradle-plugin'
+		}
+		mavenLocal()
 		mavenCentral()
-		maven { url "https://repo.spring.io/libs-release" }
+		//maven { url "https://repo.spring.io/libs-release" }
 	}
 
 	dependencies {
@@ -243,8 +265,8 @@ configure(subprojects - project(":spring-build-src")) { subproject ->
 	}
 
 	artifacts {
-		archives sourcesJar
-		archives javadocJar
+//		archives sourcesJar
+//		archives javadocJar
 	}
 }
 
@@ -284,9 +306,9 @@ configure(rootProject) {
 	}
 
 	artifacts {
-		archives docsZip
-		archives schemaZip
-		archives distZip
+		//archives docsZip
+		//archives schemaZip
+		//archives distZip
 	}
 
 	wrapper {
@@ -319,3 +341,8 @@ def qualifyVersionIfNecessary(version) {
 	}
 	return version
 }
+
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+}
+
